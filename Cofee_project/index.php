@@ -6,7 +6,7 @@ require_once './controllers/HomeController.php';
 
 $home = new HomeController();  
 
-$client = ['register', 'login'];
+$client = ['register', 'login', 'home'];
 
 
 if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){

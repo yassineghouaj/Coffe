@@ -4,11 +4,11 @@
 class Client{
 
     static public function createUser($data){
-		$stmt = DB::connect()->prepare('INSERT INTO clients (fullname,email,password,phone )
-			VALUES (:fullname,:email,:password,:phone)');
+		$stmt = DB::connect()->prepare('INSERT INTO clients (fullname,email,pass,phone )
+			VALUES (:fullname,:email,:pass,:phone)');
 		$stmt->bindParam(':fullname',$data['fullname']);
 		$stmt->bindParam(':email',$data['email']);
-		$stmt->bindParam(':password',$data['password']);
+		$stmt->bindParam(':pass',$data['pass']);
 		$stmt->bindParam(':phone',$data['phone']);
 
 		if($stmt->execute()){
@@ -21,6 +21,46 @@ class Client{
 	}
 
 
+
+	static public function login($data){
+		$email = $data['email'];
+		$user_type=$data['user_type'];
+		
+		if($user_type=='Client')
+					{
+		
+		try{
+			$query = 'SELECT * FROM clients WHERE email=:email';
+			$stmt = DB::connect()->prepare($query);
+			$stmt->execute(array(":email" => $email,
+		
+		));
+			
+			$user = $stmt->fetch(PDO::FETCH_OBJ);
+			return $user;
+		}catch(PDOException $ex){
+			echo 'erreur' . $ex->getMessage();
+		}
+	}
+	
+	
+	else if($user_type=='Administrator')
+					{
+		
+		try{
+			$query = 'SELECT * FROM admins WHERE email=:email';
+			$stmt = DB::connect()->prepare($query);
+			$stmt->execute(array(":email" => $email,
+		
+		));
+			
+			$user = $stmt->fetch(PDO::FETCH_OBJ);
+			return $user;
+		}catch(PDOException $ex){
+			echo 'erreur' . $ex->getMessage();
+		}
+	}
+	}
 
 
 
