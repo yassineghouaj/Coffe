@@ -64,6 +64,10 @@ class ClientsController {
 	}
 
 
+	
+	static public function logout(){
+		session_destroy();
+	}
 
 
 

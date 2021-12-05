@@ -3,15 +3,18 @@
 class Reservation {
 
     static public function add($data){
-		$stmt = DB::connect()->prepare('INSERT INTO Reservation (idc,idv,numplace,dater)
-			VALUES (:idc,:idv,:numplace,:dater)');
-		$stmt->bindParam(':idc',$data['idc']);
-		$stmt->bindParam(':idv',$data['idv']);
-		$stmt->bindParam(':numplace',$data['numplace']);
-		$stmt->bindParam(':dater',$data['dater']);
-	
+         
+        $stmt = DB::connect()->prepare('INSERT INTO reservations (fullname,places_number,drinks,date,idr )
+			VALUES (:fullname,:places_num,:drink,:date, :idr)');
+		$stmt->bindParam(':fullname',$data['fullname']);
+		$stmt->bindParam(':places_num',$data['places_num']);
+		$stmt->bindParam(':drink',$data['drink']);
+		$stmt->bindParam(':date',$data['date']);
+        $stmt->bindParam(':idr',$data['idr']);
 		
-		$stmt->execute();
+        $stmt->execute();
+        $stmt = null;
+		
 	}
 
 

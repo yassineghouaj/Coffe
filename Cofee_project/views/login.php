@@ -23,6 +23,7 @@
     <div class="content">
        <img src="https://res.cloudinary.com/debbsefe/image/upload/f_auto,c_fill,dpr_auto,e_grayscale/image_fz7n7w.webp" alt="header-image" class="cld-responsive">
             <h1 class="form-title">login Here</h1>
+			<?php include('./views/includes/alerts.php');?>
             <form method="post">
               
               
@@ -42,5 +43,7 @@
             </form>
         </div>
  </div>
+
+  
 </body>
-</html
+</html>

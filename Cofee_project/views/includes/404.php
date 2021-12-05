@@ -4,7 +4,9 @@
 			<div class="card-body">
 				<div class="text-center p-5 rounded bg-primary">
 					<h2 class="text-white">
-						there is nthing here  go back!!!
+					Cette page est inaccessible. Désolé.
+
+                   
 					</h2>
 					<a href="<?php echo BASE_URL;?>" class="btn btn-outline-white text-white">Home</a>
 				</div>

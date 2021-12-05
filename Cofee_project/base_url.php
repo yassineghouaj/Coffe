@@ -1,5 +1,5 @@
 <?php 
 
-define('BASE_URL','http://localhost/briefff55/');
+define('BASE_URL','http://localhost/Cofee_project/');
 
 ?>
