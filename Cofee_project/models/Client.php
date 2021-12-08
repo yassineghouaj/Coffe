@@ -5,17 +5,34 @@ class Client{
 
     static public function createUser($data){
 		
-		$sql = "SELECT count(email) FROM vols2012 WHERE email='$email'" ;
+		 
+		$conn = new PDO("mysql:host=localhost;dbname=coffe", "root","");
 
-		$result = mysql_result(mysql_query($sql),0) ;
-	 
-		if( $result > 0 ){
-		 die( "There is already a user with that email!" ) ;
-		}//end if
-	 
+		
+		if(!empty($_POST['email']) ){
 
+			$email = $_POST['email'];
 
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+				$error = "Invalid email";
+			}
 
+			$records = $conn->prepare('SELECT * FROM clients WHERE email = ?');
+			$records->execute([$email]);
+			$results = $records->rowCount();
+            
+
+			// $message = '';
+
+            if( $results > 0 ){
+			  
+				$error='invalid email';
+				Session::set('error',' already exist!!');
+
+		     }
+		 
+
+      if(empty($error)){
 
 		$stmt = DB::connect()->prepare('INSERT INTO clients (fullname,email,pass,phone )
 			VALUES (:fullname,:email,:pass,:phone)');
@@ -30,6 +47,11 @@ class Client{
 		}
 		$stmt = null;
 	}
+		}
+	}
+
+
+
 
 
 
@@ -71,6 +93,9 @@ class Client{
 			echo 'erreur' . $ex->getMessage();
 		}
 	}
+
+
+
 
 
 

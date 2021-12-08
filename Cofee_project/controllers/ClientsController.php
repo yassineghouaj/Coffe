@@ -18,7 +18,9 @@ class ClientsController {
 				Session::set('success','your acount has been created!!');
 				Redirect::to('login');
 			}else{
-				echo $result;
+				// echo $result;
+				Redirect::to('register');
+				Session::set('error',' already exist!!');
 			}
 		}
 	}
