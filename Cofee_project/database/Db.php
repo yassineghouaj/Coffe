@@ -3,7 +3,8 @@
 
 class DB{
 	static public function connect(){
-
+   
+		
 
 try {
 	$conn = new PDO("mysql:host=localhost;dbname=coffe", "root","");

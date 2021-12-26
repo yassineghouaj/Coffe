@@ -5,6 +5,7 @@ home <br>
 
 echo  $_SESSION["fullname"];
 
+
 ?>
 
 <br><br>

@@ -1,18 +1,52 @@
 <?php
 
-class ClientsController {
+class ClientsController extends Validation{
+
+
+	
      
    
     public function register(){
+
+
 		if(isset($_POST['submit'])){
-			
-		
-			$data = array(
+
+
+			if (empty($_POST["fullname"]) || empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["phone"])) {
+				Session::set('error',' fillin all required fields!!');
+				Redirect::to('register');
+
+            
+	
+			}else{
+                 
+				if (!preg_match("/^[a-zA-Z-' ]*$/",$_POST["fullname"])){
+					Session::set('error','Only letters and white space allowed');
+					Redirect::to('register');
+
+				}else{
+
+                  
+                $testemail = new Validation();
+                $valemail = $testemail->test_input(($_POST['email']));
+
+				$testpass = new Validation();
+				$valpass = $testpass->test_input(($_POST['pass']));
+				
+           
+      
+
+
+			   $data = array(
 				'fullname' => $_POST['fullname'],
-				'email' => $_POST['email'],
-				'pass' => $_POST['pass'],
+				'email' => $valemail,
+				'pass' => $valpass,
 				'phone' => $_POST['phone'],
+				
+				
 			);
+
+
 			$result = Client::createUser($data);
 			if($result === 'ok'){
 				Session::set('success','your acount has been created!!');
@@ -22,57 +56,76 @@ class ClientsController {
 				Redirect::to('register');
 				Session::set('error',' already exist!!');
 			}
+
+		}
+		}
+
+
 		}
 	}
- 
+        
 
-
-	public function auth(){
+	public function auth (){
+        
+		
 		if(isset($_POST['submit'])){
-			$data['email'] = $_POST['email'];
-			$data['pass'] = $_POST['pass'];
-			$data['user_type']=$_POST['user_type'];
+
+			if (empty($_POST["email"]) || empty($_POST["pass"])) {
+				Session::set('error',' champ a remplire!!!');
+
+			}else if(!empty($_POST["email"]) && !empty($_POST["pass"])) {
+
+				$Val = new Validation();
+                $data['email'] = $Val->test_input(($_POST['email']));
+           
+                $data ['pass']= $Val->test_input(($_POST['pass']));
+         
+	       
+			$data['user_type'] = $_POST['user_type'];
+			
 			$result = Client::login($data);
-			if($result->email === $_POST['email'] && $result->pass === $_POST['pass'] && $_POST['user_type']=='Client'){
+
+			if($result->email === $_POST['email'] && $result->pass === $_POST['pass'] && $data['user_type'] === 'Client'){
 
 				$_SESSION['logged'] = true;
 				$_SESSION['email'] = $result->email;
 				$_SESSION['fullname'] = $result->fullname;
-				$_SESSION['idc'] = $result->idc;
+				$_SESSION['id'] = $result->id;
 				$_SESSION['user_type'] ='Client';
 			
 				
 				Redirect::to('home');
 
 			}
-			else if($result->email === $_POST['email'] && $result->psd === $_POST['psd'] && $_POST['user_type']=='Administrator'){
+			else if($result->email === $_POST['email'] && $result->pass === $_POST['pass'] && $data['user_type'] ==='Admin'){
 
 				$_SESSION['logged'] = true;
 				$_SESSION['email'] = $result->email;
 				$_SESSION['fullname'] = $result->fullname;
 				$_SESSION['id'] = $result->id;
-				$_SESSION['user_type'] ='Administrator';
+				$_SESSION['user_type'] ='Admin';
 			
 				
-				Redirect::to('dashbord');
+				Redirect::to('dashboard');
 
 			}
 			
-			else{
+		else{
 				Session::set('error',' incorrect info!!');
 				Redirect::to('login');
 			}
+		
 		}
+		}
+	}
+
+	static public function logout(){
+		session_destroy();
+	
 	}
 
 
 	
-	static public function logout(){
-		session_destroy();
-	}
-
-
-
     
 }
 

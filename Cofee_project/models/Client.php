@@ -1,38 +1,43 @@
 <?php 
 
 
+
+
 class Client{
 
     static public function createUser($data){
 		
-		 
-		$conn = new PDO("mysql:host=localhost;dbname=coffe", "root","");
-
 		
-		if(!empty($_POST['email']) ){
+		// if(empty($_POST['email']) ){
+		// 	Session::set('error','empty email');
+		// 	Redirect::to('register');
 
-			$email = $_POST['email'];
+			$email = $data['email'];
 
-			if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-				$error = "Invalid email";
-			}
-
-			$records = $conn->prepare('SELECT * FROM clients WHERE email = ?');
+			if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+				$error = "";
+				Session::set('success','valid email');
+				
+			
+           
+			$records = DB::connect()->prepare('SELECT * FROM clients WHERE email = ?');
 			$records->execute([$email]);
 			$results = $records->rowCount();
+			
             
 
 			// $message = '';
 
-            if( $results > 0 ){
+            if($results > 0 ){
 			  
 				$error='invalid email';
 				Session::set('error',' already exist!!');
+				
 
 		     }
-		 
+			
 
-      if(empty($error)){
+       if(empty($error)){
 
 		$stmt = DB::connect()->prepare('INSERT INTO clients (fullname,email,pass,phone )
 			VALUES (:fullname,:email,:pass,:phone)');
@@ -46,20 +51,20 @@ class Client{
 			return 'error';
 		}
 		$stmt = null;
+	}//error
+
+
+		}//email validation
 	}
-		}
-	}
-
-
-
-
 
 
 	static public function login($data){
+
+ 
 		$email = $data['email'];
-		$user_type=$data['user_type'];
+		$user_type= $data['user_type'];
 		
-		if($user_type=='Client')
+		if($user_type==='Client')
 					{
 		
 		try{
@@ -77,7 +82,7 @@ class Client{
 	}
 	
 	
-	else if($user_type=='Administrator')
+	else if($user_type==='Admin')
 					{
 		
 		try{

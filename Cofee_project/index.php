@@ -6,8 +6,8 @@ require_once './controllers/HomeController.php';
 
 $home = new HomeController();  
 
-$client = ['home','reservation', 'services','logout'];
-$admin = ['home','reservation', 'services','logout', 'dashboard'];
+$client = ['home','reservation','myreservations', 'services','logout'];
+$admin = ['home','reservation', 'myreservations' ,'services','logout', 'dashboard', 'updateReservation', 'deleteReservation'];
 
 
 if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
@@ -27,7 +27,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 		}
 	}
 
-   else if(isset($_GET['page']) && $_SESSION['user_type'] === 'Administrator'){
+   else if(isset($_GET['page']) && $_SESSION['user_type'] === 'Admin'){
 	  require_once './views/includes/adminHeader.php';
 		if(in_array($_GET['page'],$admin)){
 			$page = $_GET['page'];
@@ -46,6 +46,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 	}
 
 }
+
 
 else if(isset($_GET['page']) && $_GET['page'] === 'register'){
 	$home->index('register');
