@@ -29,8 +29,13 @@ class Reservation {
 		$stmt->bindParam(':time',$data['time']);
         $stmt->bindParam(':id_client',$data['id_client']);
 		
-        $stmt->execute();
-        $stmt = null;
+        if ($stmt->execute()) {
+			return 'ok';
+		} else {
+			return 'error';
+		}
+		
+		$stmt = null;
 		
 	}
 

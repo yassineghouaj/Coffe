@@ -25,7 +25,13 @@ class ReservationsController{
                 
                 
                 $result = Reservation::add($data);
-                return $result;
+                if($result === 'ok'){
+                    Session::set('success','reservation submitted!!');
+                    Redirect::to('reservation');
+                }else{
+                    Session::set('error',' incorrect or empty!!');
+                }
+           
 
     }
 
@@ -78,7 +84,7 @@ public function updateReservation(){
             $data['id'] = $_POST['id'];
 			$result = Reservation::delete($data);
 			if($result === 'ok'){
-				Session::set('success','bmi deleted !!');
+				Session::set('success','reservation deleted !!');
 				Redirect::to('dashboard');
 			}else{
 				echo $result;

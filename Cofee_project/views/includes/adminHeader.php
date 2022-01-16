@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
-	<title>cofee</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
-<link rel="stylesheet" href="style/style.css">	
-<link rel="stylesheet" href="style/main.js">	
+    <title>Coffee project</title>
+    <!-- Swiper Bundle CDN Link -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <!-- Font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custiome Css File Link -->
+    
+    <!-- <link rel="stylesheet" type="text/css" href="style/normalize.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/styles.scss">
+    
 
 </head>
 
 
-
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="home">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="myreservations">my_reservations</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="reservation">Reservation <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="dashboard">dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="services">services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="logout">logout</a>
-      </li>
-      <li class="nav-item">
+<body>
+<header>
+    <a href="home" class="logo"><i class="fa fa-coffee" aria-hidden="true"></i>calais</a>
+    <nav class="navbar">
+        <a href="home" class="">home</a>
+        <a href="dashboard" class="">dashboard</a>
+        <a href="reservation">reservation</a>
+        <a href="myreservations">my reservation</a>
+        <a href="services">services</a>
+        <a href="logout">logout</a>
         <a class="nav-link " href="home"><?php echo $_SESSION['fullname'];?></a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    </nav>
+    <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+    </div>
+   
+</header>
+<!-- content -->
+

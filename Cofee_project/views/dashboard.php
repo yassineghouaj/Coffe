@@ -7,11 +7,17 @@
 
 
 <?php include('./views/includes/alerts.php');?>
-<table class="table" id = 'dashboard'>
+
+
+
+<div class="wrapper">
+    
+	<div class="wrapper-content" role="table">
+<table  class="container" id = 'dashboard'>
 					  <thead>
 					    <tr>
 					     
-					     
+						<?php include('./views/includes/alerts.php');?>			     
                 <th scope="col">fullname</th>
 					      <th scope="col">places number</th>
 					      <th scope="col">drink</th>
@@ -52,7 +58,8 @@
 					  </tbody>
 					</table>
 
-
+	</div>
+						</div><br><br><br><br><br>
 
 
 

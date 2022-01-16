@@ -7,32 +7,38 @@
     
     ?>
 
-<body>
-<h2>reservation</h2><br>
-
-<?php  echo $_SESSION['fullname'];?>
 
 
-<div class="container">
-    <div class="content">
-       <img src="https://res.cloudinary.com/debbsefe/image/upload/f_auto,c_fill,dpr_auto,e_grayscale/image_fz7n7w.webp" alt="header-image" class="cld-responsive">
-            <h1 class="form-title">Register Here</h1>
-            <?php include('./views/includes/alerts.php');?>
-            <form method="post">
-               
-              
-            
+
+
+
+
+ <div class="wrapper">
+    
+        <div class="wrapper-content" role="form">
+           
+            <div class="imge">
+                <img src="style\img\menu-4.jpg"alt="" width="500" height="500">
+            </div>
+            <form  class="formes register" method="post">
+                <h2>reserv now</h2>
+                <?php include('./views/includes/alerts.php');?>
                 <input name = 'places_num' type="number" placeholder="places num"  max =5 min =1 required>
                 <input name = 'drink' type="text" placeholder="drink" required><br>
                 <input name = 'date' type="date" placeholder="date" required><br>
                 <input name = 'time' type="time" placeholder="time" required><br>
 
-                <button name = 'add' >reserv</button>
-                
+                <!-- <button name = 'add' class="register active" >reserv now</button> -->
+                <div class="submit">
+                    
+                    <!-- <a href="#" name = 'submit' class="register active">register</a> -->
+                    <button name = 'add' class="register active">reserv now</button>
+                </div>
+              
             </form>
         </div>
- </div>
-</body>
+    </div><br><br><br><br>
+
 
 
 

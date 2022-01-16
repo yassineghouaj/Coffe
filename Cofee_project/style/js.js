@@ -1,47 +1,37 @@
-// (function() {
-// 	var module = angular.module("app", [
-//     "ngMaterial",
-//     "ngAnimate",
-//     "ngAria",
-//     "ngMessages",
-//     "mdPickers"
-//   ]); 
-  
-//   module.controller("MainCtrl", ['$scope', '$mdpDatePicker', '$mdpTimePicker', function($scope, $mdpDatePicker, $mdpTimePicker){
-//     $scope.currentDate = new Date();
-//   	this.showDatePicker = function(ev) {
-//     	$mdpDatePicker($scope.currentDate, {
-//         targetEvent: ev
-//       }).then(function(selectedDate) {
-//         $scope.currentDate = selectedDate;
-//       });;
-//     };
-    
-//     this.filterDate = function(date) {
-//       return moment(date).date() % 2 == 0;
-//     };
-    
-//     this.showTimePicker = function(ev) {
-//     	$mdpTimePicker($scope.currentTime, {
-//         targetEvent: ev
-//       }).then(function(selectedDate) {
-//         $scope.currentTime = selectedDate;
-//       });;
-//     }  
-//   }]);
-// })();
+let menue = document.querySelector('#menu-bars'),
+    navbar = document.querySelector('.navbar'),
+    search = document.querySelector("#search-icon"),
+    close = document.querySelector("#close"),
+    searchForm = document.querySelector("#search-form");
+menue.onclick = function() {
+    this.classList.toggle("fa-times");
+    navbar.classList.toggle("active");
 
-/************************** */
+}
+window.onscroll = function() {
+    menue.classList.remove("fa-times");
+    navbar.classList.remove("active");
 
 
-$('.error-page').hide(0);
 
-$('.login-button , .no-access').click(function(){
-  $('.login').slideUp(500);
-  $('.error-page').slideDown(1000);
-});
-
-$('.try-again').click(function(){
-  $('.error-page').hide(0);
-  $('.login').slideDown(1000);
+}
+search.onclick = function() {
+    searchForm.classList.toggle("active");
+}
+close.onclick = function() {
+        searchForm.classList.toggle("active");
+    }
+    /* Swiper Bundle */
+var swiper = new Swiper(".home-slider", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: true,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    loop: true
 });

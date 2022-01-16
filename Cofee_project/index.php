@@ -32,6 +32,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === true){
 		if(in_array($_GET['page'],$admin)){
 			$page = $_GET['page'];
 			$home->index($page);
+		require_once './views/includes/footer.php';
 		}else{
 			include('views/includes/404.php');
 		}

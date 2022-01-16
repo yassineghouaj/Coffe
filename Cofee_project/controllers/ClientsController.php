@@ -48,6 +48,7 @@ class ClientsController extends Validation{
 
 
 			$result = Client::createUser($data);
+			
 			if($result === 'ok'){
 				Session::set('success','your acount has been created!!');
 				Redirect::to('login');
